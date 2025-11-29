@@ -1,0 +1,184 @@
+/* Basic page styling */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: #f5f5f5;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ========== GLOBAL FLEX DEFAULTS ========== */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  color: #0066cc;
+}
+
+/* Give different background colors per “row group”
+   so it looks closer to the sample screenshots */
+.row-1,
+.row-2,
+.row-3 {
+  background: #d3eaf4;   /* light blue */
+  padding: 1rem 0;
+}
+
+.row-4,
+.row-5,
+.row-6 {
+  background: #f7edc8;   /* light yellow */
+  padding: 1rem 0;
+}
+
+/* ========== MOBILE-FIRST (DEFAULT) ========== */
+/* On mobile everything basically stacks. */
+
+/* Row 1: each card full width */
+.row-1 .card {
+  flex: 1 1 100%;
+}
+
+/* Row 2: each card full width */
+.row-2 .card {
+  flex: 1 1 100%;
+}
+
+/* THIRD ROW – stack */
+.row-3 .card {
+  flex: 1 1 100%;
+}
+
+/* FOURTH ROW – full width */
+.row-4 .card--full {
+  flex: 1 1 100%;
+}
+
+/* FIFTH ROW – stack on mobile */
+.row-5 .card {
+  flex: 1 1 100%;
+}
+
+/* Change order on mobile (center card first) */
+.row-5 .card--center { order: 1; }
+.row-5 .card--left   { order: 2; }
+.row-5 .card--right  { order: 3; }
+
+/* SIXTH ROW – 2 across on mobile */
+.row-6 .tag {
+  flex: 1 1 45%;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ========== TABLET LAYOUT ========== */
+@media (min-width: 600px) and (max-width: 1023px) {
+
+  /* Row 1 – 2 cards per row (50% each) */
+  .row-1 .card {
+    flex: 1 1 48%;
+  }
+
+  /* Row 2 – 2 equal columns */
+  .row-2 .card {
+    flex: 1 1 48%;
+  }
+
+  /* THIRD ROW – 2 equal items */
+  .row-3 .card {
+    flex: 1 1 48%;
+  }
+
+  /* FOURTH ROW – remains full width */
+  .row-4 .card--full {
+    flex: 1 1 100%;
+  }
+
+  /* FIFTH ROW – 3 equal columns */
+  .row-5 .card {
+    flex: 1 1 32%;
+    order: 0;  /* reset order for tablet */
+  }
+
+  /* SIXTH ROW – 3 per row */
+  .row-6 .tag {
+    flex: 1 1 30%;
+  }
+}
+
+/* ========== DESKTOP LAYOUT ========== */
+@media (min-width: 1024px) {
+
+  /* FIRST ROW – 4 equal cards */
+  .row-1 .card {
+    flex: 1 0 25%;
+  }
+
+  /* SECOND ROW – 2 equal cards */
+  .row-2 .card {
+    flex: 1 0 50%;
+  }
+
+  /* THIRD ROW – 1x3 layout:
+     small card = 1 column, large card = 3 columns */
+  .row-3 .card--small {
+    flex: 1 0 25%;
+  }
+
+  .row-3 .card--large {
+    flex: 1 0 75%;
+  }
+
+  /* FOURTH ROW – full-width single item (4 columns) */
+  .row-4 .card--full {
+    flex: 1 0 100%;
+  }
+
+  /* FIFTH ROW – 1 x 2 x 1 layout */
+  .row-5 .card--left,
+  .row-5 .card--right {
+    flex: 1 0 25%;
+  }
+
+  .row-5 .card--center {
+    flex: 1 0 50%;
+  }
+
+  /* Reset desktop natural order: left, center, right */
+  .row-5 .card--left,
+  .row-5 .card--center,
+  .row-5 .card--right {
+    order: 0;
+  }
+
+  /* SIXTH ROW – 5 items in one row */
+  .row-6 .tag {
+    flex: 1 0 20%;
+  }
+}

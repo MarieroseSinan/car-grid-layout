@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Garage Flexbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Car Garage</h1>
+
+  <!-- ============= FIRST ROW: 4 equal cards ============= -->
+  <section class="row row-1">
+    <article class="card">
+      <h2>Skyline R34</h2>
+      <img src="assets/car1.jpeg" alt="Nissan Skyline R34">
+      <p>
+        Iconic Japanese sports car with twin-turbo inline-six and all-wheel drive,
+        famous from street racing and movies.
+      </p>
+      <a href="https://www.google.com/search?q=Nissan+Skyline+R34" target="_blank">Learn more &gt;&gt;</a>
+    </article>
+
+    <article class="card">
+      <h2>Supra MK4</h2>
+      <img src="assets/car2.jpeg" alt="Toyota Supra MK4">
+      <p>
+        Rear-wheel-drive coupe with a legendary 2JZ engine, loved for its tuning
+        potential and balanced handling.
+      </p>
+      <a href="https://www.google.com/search?q=Toyota+Supra+MK4" target="_blank">Learn more &gt;&gt;</a>
+
+    </article>
+
+    <article class="card">
+      <h2>GT-R R35</h2>
+      <img src="assets/car3.jpeg" alt="Nissan GT-R R35">
+      <p>
+        Modern “Godzilla” supercar with advanced launch control, dual-clutch
+        transmission and brutal acceleration.
+
+      </p>
+        <a href="https://www.google.com/search?q=Nissan+GTR+R35" target="_blank">Learn more &gt;&gt;</a>
+    </article>
+
+    <article class="card">
+      <h2>Mustang GT</h2>
+      <img src="assets/car4.jpeg" alt="Ford Mustang GT">
+      <p>
+        Classic American muscle with a V8 engine, loud exhaust note and strong
+        straight-line performance.
+      </p>
+        <a href="https://www.google.com/search?q=Ford+Mustang+GT" target="_blank">Learn more &gt;&gt;</a>
+    </article>
+  </section>
+
+  <!-- ============= SECOND ROW: 2 equal cards ============= -->
+  <section class="row row-2">
+    <article class="card">
+      <h2>Camaro SS</h2>
+      <img src="assets/car5.jpeg" alt="Chevrolet Camaro SS">
+      <p>
+        Aggressive coupe with big power, track-focused packages and sharp
+        steering for weekend track days.
+      </p>
+<a href="https://www.google.com/search?q=Chevrolet+Camaro+SS" target="_blank">Learn more &gt;&gt;</a>
+    </article>
+
+    <article class="card">
+      <h2>BMW M4</h2>
+      <img src="assets/car6.jpeg" alt="BMW M4">
+      <p>
+        German performance coupe with precise chassis tuning and a turbocharged
+        inline-six, built for corners.
+      </p>
+<a href="https://www.google.com/search?q=BMW+M4" target="_blank">Learn more &gt;&gt;</a>    </article>
+  </section>
+
+  <!-- ================= THIRD ROW =================
+       Desktop: 1 column wide item X 3 column wide item
+  -->
+  <section class="row row-3">
+    <article class="card card--small">
+      <img src="assets/car7.jpeg" alt="Compact city car">
+      <h2>City Hatch</h2>
+      <p>
+        Small, easy to park, and fuel-efficient — perfect for daily commuting in
+        tight downtown streets.
+      </p>
+    </article>
+
+    <article class="card card--large">
+      <img src="assets/car8.jpeg" alt="Luxury sedan">
+      <h2>Luxury Sedan</h2>
+      <p>
+        Comfortable four-door with quiet cabin, advanced safety tech and smooth
+        ride for long highway trips.
+      </p>
+    </article>
+  </section>
+
+  <!-- ================= FOURTH ROW =================
+       Desktop: 4 column wide single item
+  -->
+  <section class="row row-4">
+    <article class="card card--full">
+      <img src="assets/car9.jpeg" alt="Convertible sports car cruising">
+      <h2>Weekend Cruise Highlight</h2>
+      <p>
+        Convertible sports car for sunny weekend drives along the coast.
+        Drop the top, enjoy the sound of the engine and the scenery.
+      </p>
+    </article>
+  </section>
+
+  <!-- ================= FIFTH ROW =================
+       Desktop: 1 column wide X 2 column wide X 1 column wide
+       Note: order changes on mobile using the flex "order" property.
+  -->
+  <section class="row row-5">
+    <article class="card card--left">
+      <img src="assets/car10.jpeg" alt="Electric city car">
+      <h2>EV Compact</h2>
+      <p>
+        Entry-level electric car with small battery, quick charging and low
+        running costs.
+      </p>
+    </article>
+
+    <article class="card card--center">
+      <img src="assets/car11.jpeg" alt="Electric SUV">
+      <h2>Electric SUV</h2>
+      <p>
+        Roomy family SUV with long range, fast charging and plenty of cargo
+        space for road trips.
+      </p>
+    </article>
+
+    <article class="card card--right">
+      <img src="assets/car12.jpeg" alt="High performance hypercar">
+      <h2>Hypercar</h2>
+      <p>
+        Extreme performance machine with huge horsepower, advanced aerodynamics
+        and track-ready hardware.
+      </p>
+    </article>
+  </section>
+
+  <!-- ================= SIXTH ROW =================
+       Custom row: many small items using other flex properties
+  -->
+  <section class="row row-6">
+    <article class="card tag"><h3>Track</h3></article>
+    <article class="card tag"><h3>Drift</h3></article>
+    <article class="card tag"><h3>Daily</h3></article>
+    <article class="card tag"><h3>Off-Road</h3></article>
+    <article class="card tag"><h3>Show Car</h3></article>
+  </section>
+
+</body>
+</html>
