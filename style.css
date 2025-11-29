@@ -1,9 +1,4 @@
-/* ===========================================================
-   CAR GARAGE — CSS GRID VERSION
-   All Flexbox removed. Layouts rebuilt using CSS Grid.
-   =========================================================== */
-
-/* ---------- BASIC PAGE STYLING ---------- */
+/* Marierose Sinanian*/
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -40,8 +35,6 @@ h1 {
   color: #0066cc;
 }
 
-/* Give different background colors per “row group”
-   to match the original assignment structure */
 .row-1,
 .row-2,
 .row-3 {
@@ -54,7 +47,6 @@ h1 {
   background: #f7edc8;   /* light yellow */
 }
 
-/* ---------- BASE GRID FOR ALL .row CONTAINERS ---------- */
 
 .row {
   display: grid;
@@ -63,17 +55,11 @@ h1 {
   padding: 1rem 0;
 }
 
-/* NEW GRID PROPERTY: justify-items
-   - Controls horizontal alignment of content inside each grid cell.
-   - "stretch" makes items fill the available width of their grid track. */
 .row {
   justify-items: stretch;
 }
 
-/* =========================================
-   MOBILE-FIRST LAYOUT (default < 600px)
-   Everything mostly stacks in 1 column.
-   ========================================= */
+
 
 /* Row 1 – 4 cards stacked */
 .row-1 {
@@ -89,9 +75,7 @@ h1 {
 .row-3 {
   grid-template-columns: 1fr;
 
-  /* NEW GRID PROPERTY: grid-auto-rows
-     - Sets a minimum row height; rows can grow if content is taller.
-     - Helps keep cards from becoming too tiny. */
+
   grid-auto-rows: minmax(200px, auto);
 }
 
@@ -100,11 +84,6 @@ h1 {
   grid-template-columns: 1fr;
 }
 
-/* Row 5 –
-   Use grid-template-areas to control order on mobile:
-   We want CENTER card first, then LEFT, then RIGHT
-   (this copies the behavior of the flex "order" on mobile).
-*/
 .row-5 {
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -113,7 +92,6 @@ h1 {
     "right";
 }
 
-/* Assign areas to the cards */
 .card--left {
   grid-area: left;
 }
@@ -126,18 +104,12 @@ h1 {
   grid-area: right;
 }
 
-/* Row 6 – tag chips
-   NEW GRID PROPERTY: repeat(auto-fit, minmax())
-   - auto-fit: automatically fits as many columns as possible.
-   - minmax(120px, 1fr): each column is at least 120px, but can grow.
-   This makes the tags responsive even on mobile. */
+/* Row 6 – tag chips */
 .row-6 {
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 0.75rem;
 
-  /* NEW GRID PROPERTY: grid-auto-flow: dense
-     - Tries to fill in any gaps in the grid layout.
-     - Helpful for tightly packed layouts with different item sizes. */
+
   grid-auto-flow: dense;
 
   /* Center the tag content inside each cell */
@@ -151,9 +123,9 @@ h1 {
   padding: 0.75rem 0.5rem;
 }
 
-/* =========================================
+/* 
    TABLET LAYOUT (600px–1023px)
-   ========================================= */
+    */
 
 @media (min-width: 600px) and (max-width: 1023px) {
 
@@ -190,9 +162,9 @@ h1 {
   }
 }
 
-/* =========================================
+/* 
    DESKTOP LAYOUT (≥ 1024px)
-   ========================================= */
+    */
 
 @media (min-width: 1024px) {
 
@@ -234,7 +206,6 @@ h1 {
     grid-template-areas: "left center right";
   }
 
-  /* Ensure each card lands in the correct column */
   .card--left {
     grid-area: left;
   }
@@ -247,7 +218,6 @@ h1 {
     grid-area: right;
   }
 
-  /* Row 6 – 5 items in one row (like original flex 20% each) */
   .row-6 {
     grid-template-columns: repeat(5, 1fr);
   }
