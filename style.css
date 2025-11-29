@@ -1,4 +1,10 @@
-/* Basic page styling */
+/* ===========================================================
+   CAR GARAGE — CSS GRID VERSION
+   All Flexbox removed. Layouts rebuilt using CSS Grid.
+   =========================================================== */
+
+/* ---------- BASIC PAGE STYLING ---------- */
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -11,20 +17,13 @@ h1 {
   margin-bottom: 2rem;
 }
 
-/* ========== GLOBAL FLEX DEFAULTS ========== */
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
+/* ---------- GLOBAL CARD STYLES ---------- */
 
 .card {
   background: #ffffff;
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .card img {
@@ -42,143 +41,214 @@ h1 {
 }
 
 /* Give different background colors per “row group”
-   so it looks closer to the sample screenshots */
+   to match the original assignment structure */
 .row-1,
 .row-2,
 .row-3 {
   background: #d3eaf4;   /* light blue */
-  padding: 1rem 0;
 }
 
 .row-4,
 .row-5,
 .row-6 {
   background: #f7edc8;   /* light yellow */
+}
+
+/* ---------- BASE GRID FOR ALL .row CONTAINERS ---------- */
+
+.row {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
   padding: 1rem 0;
 }
 
-/* ========== MOBILE-FIRST (DEFAULT) ========== */
-/* On mobile everything basically stacks. */
-
-/* Row 1: each card full width */
-.row-1 .card {
-  flex: 1 1 100%;
+/* NEW GRID PROPERTY: justify-items
+   - Controls horizontal alignment of content inside each grid cell.
+   - "stretch" makes items fill the available width of their grid track. */
+.row {
+  justify-items: stretch;
 }
 
-/* Row 2: each card full width */
-.row-2 .card {
-  flex: 1 1 100%;
+/* =========================================
+   MOBILE-FIRST LAYOUT (default < 600px)
+   Everything mostly stacks in 1 column.
+   ========================================= */
+
+/* Row 1 – 4 cards stacked */
+.row-1 {
+  grid-template-columns: 1fr;
 }
 
-/* THIRD ROW – stack */
-.row-3 .card {
-  flex: 1 1 100%;
+/* Row 2 – 2 cards stacked */
+.row-2 {
+  grid-template-columns: 1fr;
 }
 
-/* FOURTH ROW – full width */
-.row-4 .card--full {
-  flex: 1 1 100%;
+/* Row 3 – small + large stacked vertically */
+.row-3 {
+  grid-template-columns: 1fr;
+
+  /* NEW GRID PROPERTY: grid-auto-rows
+     - Sets a minimum row height; rows can grow if content is taller.
+     - Helps keep cards from becoming too tiny. */
+  grid-auto-rows: minmax(200px, auto);
 }
 
-/* FIFTH ROW – stack on mobile */
-.row-5 .card {
-  flex: 1 1 100%;
+/* Row 4 – single full-width card */
+.row-4 {
+  grid-template-columns: 1fr;
 }
 
-/* Change order on mobile (center card first) */
-.row-5 .card--center { order: 1; }
-.row-5 .card--left   { order: 2; }
-.row-5 .card--right  { order: 3; }
+/* Row 5 –
+   Use grid-template-areas to control order on mobile:
+   We want CENTER card first, then LEFT, then RIGHT
+   (this copies the behavior of the flex "order" on mobile).
+*/
+.row-5 {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "center"
+    "left"
+    "right";
+}
 
-/* SIXTH ROW – 2 across on mobile */
+/* Assign areas to the cards */
+.card--left {
+  grid-area: left;
+}
+
+.card--center {
+  grid-area: center;
+}
+
+.card--right {
+  grid-area: right;
+}
+
+/* Row 6 – tag chips
+   NEW GRID PROPERTY: repeat(auto-fit, minmax())
+   - auto-fit: automatically fits as many columns as possible.
+   - minmax(120px, 1fr): each column is at least 120px, but can grow.
+   This makes the tags responsive even on mobile. */
+.row-6 {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+
+  /* NEW GRID PROPERTY: grid-auto-flow: dense
+     - Tries to fill in any gaps in the grid layout.
+     - Helpful for tightly packed layouts with different item sizes. */
+  grid-auto-flow: dense;
+
+  /* Center the tag content inside each cell */
+  justify-items: center;
+}
+
+/* Tag style */
 .row-6 .tag {
-  flex: 1 1 45%;
   text-align: center;
   font-weight: 600;
+  padding: 0.75rem 0.5rem;
 }
 
-/* ========== TABLET LAYOUT ========== */
+/* =========================================
+   TABLET LAYOUT (600px–1023px)
+   ========================================= */
+
 @media (min-width: 600px) and (max-width: 1023px) {
 
   /* Row 1 – 2 cards per row (50% each) */
-  .row-1 .card {
-    flex: 1 1 48%;
+  .row-1 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* Row 2 – 2 equal columns */
-  .row-2 .card {
-    flex: 1 1 48%;
+  .row-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* THIRD ROW – 2 equal items */
-  .row-3 .card {
-    flex: 1 1 48%;
+  /* Row 3 – 2 equal items side-by-side */
+  .row-3 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* FOURTH ROW – remains full width */
-  .row-4 .card--full {
-    flex: 1 1 100%;
+  /* Row 4 – remains full width */
+  .row-4 {
+    grid-template-columns: 1fr;
   }
 
-  /* FIFTH ROW – 3 equal columns */
-  .row-5 .card {
-    flex: 1 1 32%;
-    order: 0;  /* reset order for tablet */
+  /* Row 5 – 3 equal columns (center in middle) */
+  .row-5 {
+    /* Reset areas to a simple 3-column layout */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "left center right";
   }
 
-  /* SIXTH ROW – 3 per row */
-  .row-6 .tag {
-    flex: 1 1 30%;
+  /* Row 6 – 3 tags per row */
+  .row-6 {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ========== DESKTOP LAYOUT ========== */
+/* =========================================
+   DESKTOP LAYOUT (≥ 1024px)
+   ========================================= */
+
 @media (min-width: 1024px) {
 
-  /* FIRST ROW – 4 equal cards */
-  .row-1 .card {
-    flex: 1 0 25%;
+  /* Row 1 – 4 equal cards */
+  .row-1 {
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  /* SECOND ROW – 2 equal cards */
-  .row-2 .card {
-    flex: 1 0 50%;
+  /* Row 2 – 2 equal cards (50% each) */
+  .row-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* THIRD ROW – 1x3 layout:
-     small card = 1 column, large card = 3 columns */
-  .row-3 .card--small {
-    flex: 1 0 25%;
+  /* Row 3 – 1 x 3 layout:
+     small card = 1 column, large card = 3 columns.
+     We do this with explicit track sizes. */
+  .row-3 {
+    /* 1fr vs 3fr gives a 25% / 75% split similar to original flex. */
+    grid-template-columns: 1fr 3fr;
   }
 
-  .row-3 .card--large {
-    flex: 1 0 75%;
+  .card.card--small {
+    /* first column by default */
   }
 
-  /* FOURTH ROW – full-width single item (4 columns) */
-  .row-4 .card--full {
-    flex: 1 0 100%;
+  .card.card--large {
+    /* second column by default */
   }
 
-  /* FIFTH ROW – 1 x 2 x 1 layout */
-  .row-5 .card--left,
-  .row-5 .card--right {
-    flex: 1 0 25%;
+  /* Row 4 – full-width single item */
+  .row-4 {
+    grid-template-columns: 1fr;
   }
 
-  .row-5 .card--center {
-    flex: 1 0 50%;
+  /* Row 5 – 1 x 2 x 1 layout:
+     left = 25%, center = 50%, right = 25%. */
+  .row-5 {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "left center right";
   }
 
-  /* Reset desktop natural order: left, center, right */
-  .row-5 .card--left,
-  .row-5 .card--center,
-  .row-5 .card--right {
-    order: 0;
+  /* Ensure each card lands in the correct column */
+  .card--left {
+    grid-area: left;
   }
 
-  /* SIXTH ROW – 5 items in one row */
-  .row-6 .tag {
-    flex: 1 0 20%;
+  .card--center {
+    grid-area: center;
+  }
+
+  .card--right {
+    grid-area: right;
+  }
+
+  /* Row 6 – 5 items in one row (like original flex 20% each) */
+  .row-6 {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
